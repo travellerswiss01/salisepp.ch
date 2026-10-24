@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /entwurf
+Disallow: /vergleich
+Disallow: /neu.html
+Sitemap: https://salisepp.ch/sitemap.xml
