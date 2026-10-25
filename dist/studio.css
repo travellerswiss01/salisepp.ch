@@ -8,3 +8,6 @@
 /* Personal portrait */
 .person{gap:20px;max-width:100%}.person img{width:116px;height:129px;flex:0 0 auto;border-radius:14px;object-fit:cover;object-position:center;box-shadow:0 4px 16px #07112d0d}.person>div{min-width:0}.person strong{line-height:1.35;margin-bottom:5px}.person span{line-height:1.45}
 @media(max-width:650px){.person{gap:16px}.person img{width:96px;height:107px;border-radius:12px}.person strong,.person span{font-size:14px}}
+
+/* Freestanding transparent portrait */
+.person img{border-radius:0;box-shadow:none;background:transparent;object-fit:contain}
