@@ -25,3 +25,8 @@
 
 #contact-form>.button{justify-self:start;min-height:50px}details[open]>summary>span[aria-hidden="true"]{font-size:0}details[open]>summary>span[aria-hidden="true"]::after{content:'−';font-size:20px}
 @media(max-width:650px){#contact-form>.button{width:100%}}
+
+
+/* Consistent service icons */
+.offer-icon{width:24px;height:24px;flex:0 0 24px;color:var(--blue);fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.offer-icon-badge{display:flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:14px;background:#e8eeff;margin-bottom:20px}.offer-icon-badge .offer-icon{width:30px;height:30px;flex-basis:30px}.offer-card ul{list-style:none;padding-left:0}.offer-card li{display:flex;align-items:flex-start;gap:12px;margin-bottom:15px}.offer-card li>.offer-icon{margin-top:1px}.offer-card li>span{min-width:0;flex:1}.offer-card .eyebrow{line-height:1.5}
+@media(max-width:650px){.offer-card li{gap:10px}.offer-icon-badge{width:48px;height:48px;margin-bottom:16px}.offer-icon-badge .offer-icon{width:26px;height:26px;flex-basis:26px}}
