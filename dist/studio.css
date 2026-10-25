@@ -11,3 +11,8 @@
 
 /* Freestanding transparent portrait */
 .person img{border-radius:0;box-shadow:none;background:transparent;object-fit:contain}
+
+
+/* Website renewal offer */
+.offer-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:28px}.offer-card{border:1px solid var(--line);border-radius:14px;padding:30px;min-width:0}.offer-card:first-child{border:2px solid var(--blue);background:#f6f8ff}.offer-card h3{font-size:27px;line-height:1.2;letter-spacing:-.8px;margin:16px 0}.offer-price{display:block;font-size:32px;letter-spacing:-1px;color:var(--blue)}.offer-price small{font-size:14px;font-weight:400;letter-spacing:0;color:var(--muted)}.offer-card p,.offer-card li{font-size:15px;line-height:1.65}.offer-card ul{padding-left:20px;margin:22px 0}.offer-card li{margin-bottom:10px}.offer-card .button{width:100%;white-space:normal}.offer-note{font-size:12px!important;color:#58647a}.line-link{color:var(--blue);text-underline-offset:4px}.hero h2{max-width:510px}#umfang{scroll-margin-top:24px}
+@media(max-width:800px){.offer-grid{grid-template-columns:1fr}.offer-card{padding:24px}.offer-card h3{font-size:25px}}@media(max-width:380px){.offer-card{padding:18px}.offer-price{font-size:28px}}
