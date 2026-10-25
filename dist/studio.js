@@ -3,7 +3,7 @@ const contactForm=document.querySelector('#contact-form');
 contactForm.addEventListener('submit',async event=>{
  event.preventDefault();
  const button=contactForm.querySelector('[type="submit"]'),status=document.querySelector('#status');
- if(button.disabled||!contactForm.reportValidity())return;
+ if(button.disabled||!window.validateDraft())return;
  const values=new FormData(contactForm);
  if(String(values.get('_honey')||'').trim())return;
  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),20000);
@@ -12,7 +12,7 @@ contactForm.addEventListener('submit',async event=>{
  try{
   const response=await fetch('https://formsubmit.co/ajax/sepp@salisepp.ch',{
    method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},signal:controller.signal,
-   body:JSON.stringify({name:values.get('name'),email:values.get('email'),Vorhaben:values.get('project'),Paket:values.get('package'),Website:values.get('website')||'Keine angegeben',Nachricht:values.get('message'),_subject:'Anfrage: kostenloser Startseiten-Entwurf',_template:'table',_honey:''})
+   body:JSON.stringify({name:values.get('name'),email:values.get('email'),Vorhaben:values.get('need'),Ziele:values.getAll('goals').join(', '),Stil:values.get('style'),Firma:values.get('company'),Branche:values.get('industry'),Paket:values.get('package'),Website:values.get('website')||'Keine angegeben',Nachricht:values.get('message'),_subject:'Anfrage: kostenloser Startseiten-Entwurf',_template:'table',_honey:''})
   });
   const result=await response.json();
   if(!response.ok||!(result.success===true||result.success==='true'))throw new Error('Versand nicht bestätigt');
@@ -49,3 +49,11 @@ calendarButton.addEventListener('click',()=>{
 document.querySelectorAll('.draft-request').forEach(a=>a.addEventListener('click',()=>{document.querySelector('#request-details').open=true;}));
 
 document.querySelectorAll('a[href="#umfang"]').forEach(link=>link.addEventListener('click',()=>{document.querySelector('#umfang').open=true;}));
+
+
+// Guided draft request: answers stay in the form when navigating or retrying.
+(()=>{const steps=[...document.querySelectorAll('.wizard-step')],next=document.querySelector('#wizard-next'),back=document.querySelector('#wizard-back'),send=contactForm.querySelector('[type="submit"]'),error=document.querySelector('#wizard-error');let current=0;
+function valid(){error.textContent='';if(current<3){const names=['need','goals','style'];if(!contactForm.querySelector('input[name="'+names[current]+'"]:checked')){error.textContent=current===1?'Wähle mindestens ein Ziel aus.':'Bitte wähle eine Möglichkeit aus.';return false;}return true;}return contactForm.reportValidity();}
+window.validateDraft=()=>current===3&&valid();
+function render(focus=false){steps.forEach((s,i)=>s.hidden=i!==current);document.querySelector('#wizard-count').textContent='Schritt '+(current+1)+' von 4';document.querySelectorAll('.wizard-progress i').forEach((p,i)=>p.classList.toggle('done',i<=current));back.hidden=current===0;next.hidden=current===3;send.hidden=current!==3;error.textContent='';if(current===3){const d=new FormData(contactForm);document.querySelector('#wizard-summary-text').textContent=[d.get('need'),d.getAll('goals').join(' · '),d.get('style')].join(' — ');}if(focus)steps[current].querySelector('legend').focus({preventScroll:true});}
+next.addEventListener('click',()=>{if(valid()){current++;render(true);}});back.addEventListener('click',()=>{current--;render(true);});document.querySelector('#wizard-edit').addEventListener('click',()=>{current=0;render(true);});contactForm.addEventListener('keydown',e=>{if(e.key==='Enter'&&current<3){e.preventDefault();next.click();}});render();})();
