@@ -47,3 +47,5 @@ calendarButton.addEventListener('click',()=>{
 
 
 document.querySelectorAll('.draft-request').forEach(a=>a.addEventListener('click',()=>{document.querySelector('#request-details').open=true;}));
+
+document.querySelectorAll('a[href="#umfang"]').forEach(link=>link.addEventListener('click',()=>{document.querySelector('#umfang').open=true;}));
