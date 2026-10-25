@@ -12,7 +12,7 @@ contactForm.addEventListener('submit',async event=>{
  try{
   const response=await fetch('https://formsubmit.co/ajax/sepp@salisepp.ch',{
    method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},signal:controller.signal,
-   body:JSON.stringify({name:values.get('name'),email:values.get('email'),Vorhaben:values.get('project'),Paket:values.get('package'),Website:values.get('website')||'Keine angegeben',Nachricht:values.get('message'),_subject:'Neue Website-Anfrage über salisepp.ch',_template:'table',_honey:''})
+   body:JSON.stringify({name:values.get('name'),email:values.get('email'),Vorhaben:values.get('project'),Paket:values.get('package'),Website:values.get('website')||'Keine angegeben',Nachricht:values.get('message'),_subject:'Anfrage: kostenloser Startseiten-Entwurf',_template:'table',_honey:''})
   });
   const result=await response.json();
   if(!response.ok||!(result.success===true||result.success==='true'))throw new Error('Versand nicht bestätigt');
@@ -20,7 +20,7 @@ contactForm.addEventListener('submit',async event=>{
   button.textContent='Anfrage gesendet ✓';contactForm.reset();
  }catch(error){
   status.textContent='Der Versand konnte nicht bestätigt werden. Deine Eingaben bleiben erhalten. Bitte versuche es später erneut oder schreibe direkt an sepp@salisepp.ch.';
-  button.disabled=false;button.textContent='Anfrage senden ↗';
+  button.disabled=false;button.textContent='Kostenlosen Entwurf anfragen ↗';
  }finally{clearTimeout(timer);contactForm.removeAttribute('aria-busy');}
 });
 
@@ -44,3 +44,6 @@ calendarButton.addEventListener('click',()=>{
  const script=document.createElement('script');script.src='https://assets.calendly.com/assets/external/widget.js';script.async=true;
  script.onload=showCalendar;script.onerror=()=>{bookingStatus.textContent='Der Kalender konnte hier nicht geladen werden. Bitte nutze den direkten Buchungslink unten.';calendarButton.disabled=false;script.remove();};document.head.appendChild(script);
 });
+
+
+document.querySelectorAll('.draft-request').forEach(a=>a.addEventListener('click',()=>{document.querySelector('#request-details').open=true;}));
