@@ -57,3 +57,5 @@ function valid(){error.textContent='';if(current<3){const names=['need','goals',
 window.validateDraft=()=>current===3&&valid();
 function render(focus=false){steps.forEach((s,i)=>s.hidden=i!==current);document.querySelector('#wizard-count').textContent='Schritt '+(current+1)+' von 4';document.querySelectorAll('.wizard-progress i').forEach((p,i)=>p.classList.toggle('done',i<=current));back.hidden=current===0;next.hidden=current===3;send.hidden=current!==3;error.textContent='';if(current===3){const d=new FormData(contactForm);document.querySelector('#wizard-summary-text').textContent=[d.get('need'),d.getAll('goals').join(' · '),d.get('style')].join(' — ');}if(focus)steps[current].querySelector('legend').focus({preventScroll:true});}
 next.addEventListener('click',()=>{if(valid()){current++;render(true);}});back.addEventListener('click',()=>{current--;render(true);});document.querySelector('#wizard-edit').addEventListener('click',()=>{current=0;render(true);});contactForm.addEventListener('keydown',e=>{if(e.key==='Enter'&&current<3){e.preventDefault();next.click();}});render();})();
+
+
