@@ -65,3 +65,40 @@
 .style-3 .mini-visual{background:linear-gradient(135deg,#4c4a48,#a18b68);border-radius:0}
 .style-3 .mini-caption{color:#fff0d9}.style-3 .mini-cta{color:#191d28;border-radius:0}
 @media(max-width:650px){.wizard-step[data-step="2"] .choice-grid{grid-template-columns:1fr}.style-preview{min-height:252px}.mini-nav{padding:15px}.mini-nav>strong{font-size:11px}.mini-nav>span{font-size:8px}.mini-hero{padding:24px 15px;min-height:176px;gap:12px}.mini-copy>strong,.style-1 .mini-copy>strong,.style-2 .mini-copy>strong,.style-3 .mini-copy>strong{font-size:26px}.mini-kicker{font-size:7px}.mini-description{font-size:9px}.mini-cta{font-size:9px}.mini-services{font-size:8px}.mini-caption{font-size:9px}}
+
+
+.salisepp-packages{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:32px 0}.salisepp-package{border:1px solid rgba(125,125,125,.28);border-radius:18px;padding:28px 22px;display:flex;flex-direction:column;gap:13px}.salisepp-package h3{margin:0}.salisepp-package p{margin:0}.salisepp-package ul{padding-left:19px;margin:5px 0 18px;flex:1}.salisepp-package li{margin:9px 0}.salisepp-package .offer-price{display:block;font-size:clamp(1.7rem,3vw,2.5rem)}.salisepp-package.featured{border:2px solid #b58c4d;box-shadow:0 12px 36px rgba(0,0,0,.1)}.salisepp-package .recommendation{font-weight:700;color:#b58c4d}.salisepp-package .button{display:block;text-align:center}@media(max-width:850px){.salisepp-packages{grid-template-columns:1fr}}
+
+
+/* Clear offer, visible package selection and complete request feedback */
+.hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--blue);line-height:1.6;margin:0 0 18px}
+.hero h1{font-size:clamp(42px,4.5vw,62px);letter-spacing:-2.8px;line-height:1.06}
+.hero-intro{font-size:18px;line-height:1.6;max-width:500px;margin:0 0 18px;color:#46536a}
+.hero-included{font-size:14px;font-weight:700;line-height:1.6;margin:0 0 26px}
+.hero-included span{margin:0 6px;color:var(--blue)}
+.hero-actions>.text-link{display:inline-block}
+.offers-intro{font-size:17px;line-height:1.65;max-width:800px;color:#46536a}
+.salisepp-package{border-radius:12px;line-height:1.55}
+.salisepp-package.featured{border-color:var(--blue);background:#f5f7ff;box-shadow:none}
+.salisepp-package .recommendation{color:var(--blue);font-size:13px}
+.salisepp-package .eyebrow{line-height:1.7}
+.salisepp-package li{font-size:14px}
+.salisepp-package p{font-size:15px}
+.salisepp-package .button{padding-inline:12px}
+.offer-note{line-height:1.7}
+.draft-wizard .selection-summary:not([hidden]){display:block}
+.wizard-context{display:grid;gap:14px;margin-top:22px}
+.wizard-context .fine{margin-top:-7px}
+.optional{font-weight:400;color:#58647a;font-size:12px}
+.wizard-fields label,.wizard-context label{align-content:start}
+.wizard-fields label .optional,.wizard-context label .optional{display:inline}
+.wizard-fields label{position:relative}
+.request-success h3{font-size:28px;margin:0 0 14px;letter-spacing:-.7px}
+.request-success p{font-size:16px;line-height:1.7;margin:0 0 24px;max-width:560px}
+.draft-wizard.is-sent>:not(#request-success):not(#status){display:none!important}
+#request-fallback a{color:var(--blue);font-size:14px;line-height:1.6}
+@media(max-width:650px){.hero h1{font-size:clamp(35px,9.1vw,54px);letter-spacing:-1.8px}.hero-eyebrow{font-size:10px;letter-spacing:1px}.hero-intro{font-size:17px}.hero-included{font-size:13px}.hero-actions>.text-link{margin-top:20px}.salisepp-package{padding:24px 20px}.wizard-top{flex-wrap:wrap}.wizard-actions .button{max-width:100%}.wizard-fields label{gap:8px}}
+@media(max-width:360px){.wrap{width:calc(100% - 32px)}.hero h1{font-size:34px}.hero-included span{margin:0 2px}.wizard-actions{gap:8px}.wizard-actions .button{font-size:13px;padding:13px 10px}.choice-card{padding:13px;font-size:13px}.choice-card:has(input:checked){padding:12px}}
+@media(max-width:650px){.cursor{right:0}}
+@media(max-width:360px){#nav{left:-16px;right:-16px}}
+@media(max-width:420px){.mini-hero{grid-template-columns:minmax(0,1.8fr) minmax(0,.7fr);padding:20px 10px;gap:8px}.mini-copy>strong,.style-1 .mini-copy>strong,.style-2 .mini-copy>strong,.style-3 .mini-copy>strong{font-size:20px;letter-spacing:-.5px}.mini-nav{padding:12px 10px}.mini-nav>strong{font-size:9px}.mini-nav>span{font-size:6px}.mini-caption{display:none}.mini-services{padding:10px;font-size:7px}}
