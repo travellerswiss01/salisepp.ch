@@ -35,42 +35,6 @@
     }
   }
 
-  // This small demo changes only its own on-page preview.
-  const titleInput = document.querySelector('#demo-title');
-  const previewTitle = document.querySelector('#demo-preview-title');
-  const preview = document.querySelector('#cms-preview');
-  const reset = document.querySelector('#reset-demo');
-  const feedback = document.querySelector('#demo-feedback');
-  const colorButtons = [...document.querySelectorAll('.demo-color')];
-  const colors = new Set(['#103dff', '#752836', '#35654b']);
-  if (titleInput && previewTitle && preview && reset) {
-    const defaultTitle = 'Gute Ideen. Sichtbar gemacht.';
-    const updateTitle = () => {
-      previewTitle.textContent = titleInput.value.trim() || defaultTitle;
-    };
-    const setColor = color => {
-      if (!colors.has(color)) return;
-      preview.style.setProperty('--demo-accent', color);
-      colorButtons.forEach(button => {
-        button.setAttribute('aria-pressed', String(button.dataset.color === color));
-      });
-    };
-    titleInput.addEventListener('input', updateTitle);
-    colorButtons.forEach(button => button.addEventListener('click', () => {
-      if (!colors.has(button.dataset.color)) return;
-      setColor(button.dataset.color);
-      if (feedback) feedback.textContent = 'Farbe in der Vorschau geändert.';
-    }));
-    reset.addEventListener('click', () => {
-      titleInput.value = defaultTitle;
-      updateTitle();
-      setColor('#103dff');
-      if (feedback) feedback.textContent = 'Die Vorschau ist zurückgesetzt.';
-    });
-    updateTitle();
-    setColor('#103dff');
-  }
-
   const revealElements = [...document.querySelectorAll('[data-reveal]')];
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let observer;
