@@ -3,4 +3,4 @@ Allow: /
 Disallow: /entwurf
 Disallow: /vergleich
 Disallow: /neu.html
-Sitemap: https://salisepp.ch/sitemap.xml
+Sitemap: https://www.salisepp.ch/sitemap.xml
