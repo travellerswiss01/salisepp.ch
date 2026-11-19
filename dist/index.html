@@ -19,7 +19,7 @@
 .kosten-auswahl select{width:100%;min-height:48px;border:1px solid #a8b8d9;border-radius:8px;background:white;color:#111c36;font:inherit;font-weight:400;padding:8px}
 .kosten-resultat{border-top:1px solid #cad5ed;padding-top:20px;display:grid;gap:4px}
 #kosten-preis{color:#143dff;font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.2}.kosten-hinweis{max-width:70ch;font-size:.9rem}
-</style><style>.larger-projects{margin:3rem 0 1rem}.larger-projects>div{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:1rem}.larger-projects article{border:1px solid #d8e1fb;border-radius:16px;padding:clamp(18px,3vw,32px)}.larger-projects h4{font-size:1.4rem;margin:0 0 .5rem}.larger-projects article strong{color:#143dff}.larger-projects a{font-weight:650}</style></head>
+</style><style>.larger-projects{margin:3rem 0 1rem}.larger-projects>div{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:1rem}.larger-projects article{border:1px solid #d8e1fb;border-radius:16px;padding:clamp(18px,3vw,32px)}.larger-projects h4{font-size:1.4rem;margin:0 0 .5rem}.larger-projects article strong{color:#143dff}.larger-projects a{font-weight:650}</style><style>#kostenrechner [hidden]{display:none!important}#kosten-fortschritt{color:#34518a;font-size:.9rem}#kosten-umfang label,#kosten-funktionen h4{display:block;font-size:1.3rem;font-weight:700;margin:1.2rem 0}#kosten-zahl{display:block;text-align:center;font-weight:750;font-size:2.1rem}#kosten-tasten{display:block;text-align:center}#kosten-seiten{width:100%;height:44px;accent-color:#143dff;cursor:pointer}.kosten-skala,.kosten-karten{display:flex;gap:10px;justify-content:space-between}.kosten-karten{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}.kosten-karten button{min-height:64px;text-align:left;background:white;color:#152644;border:1px solid #b6c7ea;border-radius:12px;padding:14px;font:inherit;font-weight:600;cursor:pointer}.kosten-karten button:hover,.kosten-karten button:focus-visible{border-color:#143dff;background:#edf2ff}#kosten-zurueck{margin-top:16px;background:transparent;border:0;padding:8px;color:#2349b4;cursor:pointer}</style></head>
 
 <body>
 <div id="reading-progress" aria-hidden="true"></div>
@@ -157,20 +157,45 @@
 
 <section id="kostenrechner" aria-labelledby="kosten-titel">
 <h3 id="kosten-titel">Was kostet deine Website?</h3>
-<p>Wähle Seitenzahl und Funktion. Du siehst sofort, welches Paket zu deinem Betrieb passt.</p>
-<div class="kosten-auswahl"><label>Wie viele Seiten brauchst du?
-<select id="kosten-seiten"><option value="1">Eine Seite</option><option value="5">2 bis 5 Seiten</option><option value="8">6 bis 8 Seiten</option><option value="15">9 bis 15 Seiten</option><option value="mehr">Mehr als 15 Seiten</option></select></label>
-<label>Was soll die Website können?
-<select id="kosten-funktion"><option value="kontakt">Informieren und Kontakt ermöglichen</option><option value="extra">Einfache Buchung oder Automatisierung</option><option value="shop">Onlineshop mit bis zu 20 Produkten</option><option value="gross">Grösserer Onlineshop</option><option value="zwei">Zwei einfache Zusatzfunktionen</option><option value="individuell">Individuelle Schnittstellen oder weitere Funktionen</option></select></label></div>
-<div class="kosten-resultat" aria-live="polite" aria-atomic="true"><strong id="kosten-preis">CHF 900 einmalig</strong><span id="kosten-paket">Web Basic · Eine Seite mit bis zu sechs Inhaltsbereichen und Kontaktformular.</span></div>
+<p id="kosten-fortschritt">Schritt 1 von 2</p>
+<div id="kosten-umfang"><label for="kosten-seiten">Wie viele Seiten brauchst du?</label>
+<output for="kosten-seiten" id="kosten-zahl">1 Seite</output>
+<small id="kosten-tasten">Regler loslassen oder mit der Eingabetaste bestätigen.</small><input aria-describedby="kosten-tasten" type="range" id="kosten-seiten" min="1" max="16" value="1" aria-valuetext="1 Seite">
+<div class="kosten-skala"><span>1 Seite</span><span>Mehr als 15</span></div></div>
+<div id="kosten-funktionen" hidden><h4 tabindex="-1">Was soll deine Website können?</h4>
+<div class="kosten-karten"><button type="button" data-funktion="kontakt">Informieren und Kontakt ermöglichen</button><button type="button" data-funktion="extra">Einfache Buchung oder Automatisierung</button><button type="button" data-funktion="shop">Onlineshop mit bis zu 20 Produkten</button><button type="button" data-funktion="gross">Grösserer Onlineshop</button><button type="button" data-funktion="zwei">Zwei einfache Zusatzfunktionen</button><button type="button" data-funktion="individuell">Individuelle Schnittstellen oder weitere Funktionen</button></div></div>
+<div id="kosten-ergebnis" hidden><div class="kosten-resultat" aria-live="polite" aria-atomic="true"><strong id="kosten-preis" tabindex="-1">CHF 900 einmalig</strong><span id="kosten-paket">Web Basic · Eine Seite mit bis zu sechs Inhaltsbereichen und Kontaktformular.</span></div>
 <p class="kosten-hinweis">Richtpreis für die Umsetzung. Domain, Hosting und externe Dienste kommen bei Bedarf dazu. Den verbindlichen Preis erhältst du mit der Offerte.</p>
 <a id="kosten-anfrage" href="#kontakt" class="button draft-request package-select" data-package="Web Basic · CHF 900.–">Kostenlosen Entwurf anfragen</a>
+</div>
+<button hidden id="kosten-zurueck" type="button">← Zurück</button>
 </section>
 <script>
 (() => {
-  const calculator = document.querySelector('#kostenrechner');
-  const pages = document.querySelector('#kosten-seiten');
-  const feature = document.querySelector('#kosten-funktion');
+  const byId = id => document.getElementById(id);
+  const pages = byId('kosten-seiten');
+  const stages = ['kosten-umfang', 'kosten-funktionen', 'kosten-ergebnis'];
+  let stage = 0;
+  function show(index) {
+    stage = index;
+    stages.forEach((id, i) => { byId(id).hidden = i !== index; });
+    byId('kosten-zurueck').hidden = index === 0;
+    byId('kosten-fortschritt').textContent = ['Schritt 1 von 2', 'Schritt 2 von 2 · ' + pageLabel(), 'Dein Richtpreis · ' + pageLabel()][index];
+    [pages, byId('kosten-funktionen').querySelector('h4'), byId('kosten-preis')][index].focus();
+  }
+  function pageLabel() {
+    return pages.value === '16' ? 'Mehr als 15 Seiten' : pages.value + (pages.value === '1' ? ' Seite' : ' Seiten');
+  }
+  pages.oninput = () => {
+    byId('kosten-zahl').textContent = pageLabel();
+    pages.setAttribute('aria-valuetext', pageLabel());
+  };
+  pages.addEventListener('click', () => show(1));
+  pages.addEventListener('keyup', event => {
+    if (event.key === 'Enter' || event.key === ' ') show(1);
+  });
+  pages.addEventListener('pointerup', () => requestAnimationFrame(() => { if (stage === 0) show(1); }));
+  byId('kosten-zurueck').onclick = () => show(stage - 1);
   const offers = {
     basic: ['CHF 900 einmalig', 'Web Basic', 'Eine Seite mit bis zu sechs Inhaltsbereichen und Kontaktformular.'],
     business: ['CHF 1’990 einmalig', 'Web Business', 'Bis zu fünf Seiten mit Kontakt- oder Anfrageformular.'],
@@ -179,20 +204,23 @@
     shop: ['ab CHF 6’900 einmalig', 'Shopify-Shop', 'Shopify-Einrichtung mit bis zu 15 Inhaltsseiten und 20 bereitgestellten Produkten, einem Zahlungsanbieter und Schweizer Standardversand. Shopify-Abo und Transaktionsgebühren separat.'],
     custom: ['Preis auf Anfrage', 'Individuelle Offerte', 'Für diesen Umfang kalkuliere ich den Aufwand persönlich.']
   };
-  function updatePrice() {
+  byId('kosten-funktionen').onclick = event => {
+    const choice = event.target.closest('[data-funktion]');
+    if (!choice) return;
+    const feature = choice.dataset.funktion;
+    const count = Number(pages.value);
     let plan = 'basic';
-    if (pages.value === 'mehr' || ['gross', 'individuell'].includes(feature.value)) plan = 'custom';
-    else if (feature.value === 'shop') plan = 'shop';
-    else if (pages.value === '15' || feature.value === 'zwei') plan = 'studio';
-    else if (pages.value === '8' || feature.value === 'extra') plan = 'premium';
-    else if (pages.value === '5') plan = 'business';
-    const [price, name, scope] = offers[plan];
-    document.querySelector('#kosten-preis').textContent = price;
-    document.querySelector('#kosten-paket').textContent = name + ' · ' + scope;
-    document.querySelector('#kosten-anfrage').dataset.package = [name, price, pages.selectedOptions[0].text, feature.selectedOptions[0].text].join(' · ');
-  }
-  calculator.addEventListener('change', updatePrice);
-  updatePrice();
+    if (count > 15 || ['gross','individuell'].includes(feature)) plan = 'custom';
+    else if (feature === 'shop') plan = 'shop';
+    else if (count > 8 || feature === 'zwei') plan = 'studio';
+    else if (count > 5 || feature === 'extra') plan = 'premium';
+    else if (count > 1) plan = 'business';
+    const [price,name,scope] = offers[plan];
+    byId('kosten-preis').textContent = price;
+    byId('kosten-paket').textContent = name + ' · ' + scope;
+    byId('kosten-anfrage').dataset.package = [name, price, pageLabel(), choice.textContent].join(' · ');
+    show(2);
+  };
 })();
 </script>
 <div class="salisepp-packages packages-interactive">
