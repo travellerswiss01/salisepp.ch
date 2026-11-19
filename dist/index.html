@@ -19,7 +19,7 @@
 .kosten-auswahl select{width:100%;min-height:48px;border:1px solid #a8b8d9;border-radius:8px;background:white;color:#111c36;font:inherit;font-weight:400;padding:8px}
 .kosten-resultat{border-top:1px solid #cad5ed;padding-top:20px;display:grid;gap:4px}
 #kosten-preis{color:#143dff;font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.2}.kosten-hinweis{max-width:70ch;font-size:.9rem}
-</style></head>
+</style><style>.larger-projects{margin:3rem 0 1rem}.larger-projects>div{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:1rem}.larger-projects article{border:1px solid #d8e1fb;border-radius:16px;padding:clamp(18px,3vw,32px)}.larger-projects h4{font-size:1.4rem;margin:0 0 .5rem}.larger-projects article strong{color:#143dff}.larger-projects a{font-weight:650}</style></head>
 
 <body>
 <div id="reading-progress" aria-hidden="true"></div>
@@ -159,9 +159,9 @@
 <h3 id="kosten-titel">Was kostet deine Website?</h3>
 <p>Wähle Seitenzahl und Funktion. Du siehst sofort, welches Paket zu deinem Betrieb passt.</p>
 <div class="kosten-auswahl"><label>Wie viele Seiten brauchst du?
-<select id="kosten-seiten"><option value="1">Eine Seite</option><option value="5">2 bis 5 Seiten</option><option value="8">6 bis 8 Seiten</option><option value="mehr">Mehr als 8 Seiten</option></select></label>
+<select id="kosten-seiten"><option value="1">Eine Seite</option><option value="5">2 bis 5 Seiten</option><option value="8">6 bis 8 Seiten</option><option value="15">9 bis 15 Seiten</option><option value="mehr">Mehr als 15 Seiten</option></select></label>
 <label>Was soll die Website können?
-<select id="kosten-funktion"><option value="kontakt">Informieren und Kontakt ermöglichen</option><option value="extra">Einfache Buchung oder Automatisierung</option><option value="shop">Produkte online verkaufen</option><option value="individuell">Mehrere Zusatzfunktionen</option></select></label></div>
+<select id="kosten-funktion"><option value="kontakt">Informieren und Kontakt ermöglichen</option><option value="extra">Einfache Buchung oder Automatisierung</option><option value="shop">Onlineshop mit bis zu 20 Produkten</option><option value="gross">Grösserer Onlineshop</option><option value="zwei">Zwei einfache Zusatzfunktionen</option><option value="individuell">Individuelle Schnittstellen oder weitere Funktionen</option></select></label></div>
 <div class="kosten-resultat" aria-live="polite" aria-atomic="true"><strong id="kosten-preis">CHF 900 einmalig</strong><span id="kosten-paket">Web Basic · Eine Seite mit bis zu sechs Inhaltsbereichen und Kontaktformular.</span></div>
 <p class="kosten-hinweis">Richtpreis für die Umsetzung. Domain, Hosting und externe Dienste kommen bei Bedarf dazu. Den verbindlichen Preis erhältst du mit der Offerte.</p>
 <a id="kosten-anfrage" href="#kontakt" class="button draft-request package-select" data-package="Web Basic · CHF 900.–">Kostenlosen Entwurf anfragen</a>
@@ -175,11 +175,15 @@
     basic: ['CHF 900 einmalig', 'Web Basic', 'Eine Seite mit bis zu sechs Inhaltsbereichen und Kontaktformular.'],
     business: ['CHF 1’990 einmalig', 'Web Business', 'Bis zu fünf Seiten mit Kontakt- oder Anfrageformular.'],
     premium: ['CHF 2’900 einmalig', 'Web Premium', 'Bis zu acht Seiten und eine einfache Zusatzfunktion nach Absprache.'],
+    studio: ['ab CHF 4’900 einmalig', 'Web Plus', 'Bis zu 15 Inhaltsseiten und bis zu zwei einfache Zusatzfunktionen, etwa Terminbuchung und automatisierte Anfragebestätigung.'],
+    shop: ['ab CHF 6’900 einmalig', 'Shopify-Shop', 'Shopify-Einrichtung mit bis zu 15 Inhaltsseiten und 20 bereitgestellten Produkten, einem Zahlungsanbieter und Schweizer Standardversand. Shopify-Abo und Transaktionsgebühren separat.'],
     custom: ['Preis auf Anfrage', 'Individuelle Offerte', 'Für diesen Umfang kalkuliere ich den Aufwand persönlich.']
   };
   function updatePrice() {
     let plan = 'basic';
-    if (pages.value === 'mehr' || ['shop', 'individuell'].includes(feature.value)) plan = 'custom';
+    if (pages.value === 'mehr' || ['gross', 'individuell'].includes(feature.value)) plan = 'custom';
+    else if (feature.value === 'shop') plan = 'shop';
+    else if (pages.value === '15' || feature.value === 'zwei') plan = 'studio';
     else if (pages.value === '8' || feature.value === 'extra') plan = 'premium';
     else if (pages.value === '5') plan = 'business';
     const [price, name, scope] = offers[plan];
@@ -239,6 +243,7 @@
 <li>Einführung und 30 Tage Unterstützung bei Bedienungsfragen</li>
 </ul></details><a class="button draft-request package-select" data-package="Web Premium · CHF 2’900.–" href="#kontakt">Premium-Entwurf anfragen <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></article>
 </div>
+<section class="larger-projects"><h3>Für grössere Projekte</h3><div><article><h4>Web Plus</h4><strong>ab CHF 4’900 einmalig</strong><p>Bis zu 15 Inhaltsseiten und bis zu zwei einfache Zusatzfunktionen, etwa Terminbuchung und automatisierte Anfragebestätigung.</p><a class="draft-request package-select" href="#kontakt" data-package="Web Plus · ab CHF 4’900">Web Plus anfragen →</a></article><article><h4>Shopify-Shop</h4><strong>ab CHF 6’900 einmalig</strong><p>Shopify-Einrichtung mit bis zu 15 Inhaltsseiten und 20 bereitgestellten Produkten, einem Zahlungsanbieter und Schweizer Standardversand. Shopify-Abo und Transaktionsgebühren separat.</p><a class="draft-request package-select" href="#kontakt" data-package="Shopify-Shop · ab CHF 6’900">Shopify-Shop anfragen →</a></article></div></section>
 <p class="offer-note">Alle Preise in CHF, einmalig, für den beschriebenen Standardumfang. Hosting, Domain, externe Dienste und grössere Sonderfunktionen werden bei Bedarf separat offeriert. Du bekommst vor jedem Auftrag eine verbindliche Offerte.</p>
 
 <div class="questions-intro"><span class="eyebrow">KURZ ERKLÄRT</span><h3>Deine Fragen, einfach beantwortet</h3></div>
