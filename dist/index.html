@@ -11,7 +11,15 @@
 <link rel="stylesheet" href="refinements.css?v=20261118"/>
 <link rel="stylesheet" href="choice-experience.css?v=20261118"/>
 <link rel="stylesheet" href="cms-monitor.css?v=20261118"/>
-<style>main > #kontakt:first-child{padding-top:clamp(12px,2vw,28px)} main > #kontakt:first-child summary{display:none}</style></head>
+<style>main > #kontakt:first-child{padding-top:clamp(12px,2vw,28px)} main > #kontakt:first-child summary{display:none}</style><style>
+#kostenrechner{scroll-margin-top:6rem;background:#f6f8ff;color:#101b38;border:1px solid #d8e1fb;border-radius:18px;padding:clamp(20px,4vw,42px);margin:24px 0}
+#kostenrechner h3{font-size:clamp(1.6rem,3vw,2.4rem);line-height:1.12;margin:0 0 10px}
+.kosten-auswahl{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px;margin:24px 0}
+.kosten-auswahl label{display:grid;gap:8px;font-weight:650}
+.kosten-auswahl select{width:100%;min-height:48px;border:1px solid #a8b8d9;border-radius:8px;background:white;color:#111c36;font:inherit;font-weight:400;padding:8px}
+.kosten-resultat{border-top:1px solid #cad5ed;padding-top:20px;display:grid;gap:4px}
+#kosten-preis{color:#143dff;font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.2}.kosten-hinweis{max-width:70ch;font-size:.9rem}
+</style></head>
 
 <body>
 <div id="reading-progress" aria-hidden="true"></div>
@@ -19,7 +27,7 @@
 <header class="wrap">
 <a class="logo" href="#">sali<span>sepp</span><b>.</b>ch</a>
 <nav aria-label="Hauptnavigation" id="nav">
-<a href="#arbeit">Referenzen</a><a href="#cms-erleben">Live-Demo</a><a href="#angebot">Angebote</a><a class="button draft-request" href="#kontakt">Kostenlosen Entwurf anfragen <svg class="inline-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a>
+<a href="#arbeit">Referenzen</a><a href="#cms-erleben">Live-Demo</a><a href="#angebot">Angebote</a><a href="#kostenrechner">Kostenrechner</a><a class="button draft-request" href="#kontakt">Kostenlosen Entwurf anfragen <svg class="inline-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"/></svg></a>
 </nav>
 <button aria-controls="nav" aria-expanded="false" id="menu">Menü</button>
 </header>
@@ -147,15 +155,42 @@
 <section class="offers wrap" id="angebot">
 <h2>Die passende Website für deinen Betrieb</h2><p class="offers-intro">Deine Texte und Bilder kannst du bei jedem Paket selbst bearbeiten. Ich richte alles ein und zeige dir, wie es geht. Du siehst zuerst deinen kostenlosen Startseiten-Entwurf und die verbindliche Offerte – danach entscheidest du.</p>
 
-<div class="package-finder" hidden>
-<div class="package-finder-heading"><span class="eyebrow">FIND DEINEN EINSTIEG</span><h3>Was brauchst du?</h3></div>
-<div class="package-finder-options" role="group" aria-label="Passendes Website-Paket finden">
-<button type="button" data-find-package="basic" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>Eine kompakte Seite</button>
-<button type="button" data-find-package="business" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="14" height="14" rx="3"/><path d="M7 7V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-2M7 12h6M7 16h4"/></svg>Mehrere Seiten</button>
-<button type="button" data-find-package="premium" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="8" height="7" rx="2"/><rect x="14" y="14" width="8" height="7" rx="2"/><path d="M6 10v7h8M18 4v6M15 7h6"/></svg>Eine Zusatzfunktion</button>
-</div>
-<p id="package-finder-feedback" role="status">Wähle, was du vorhast. Ich zeige dir den passenden Einstieg.</p>
-</div>
+<section id="kostenrechner" aria-labelledby="kosten-titel">
+<h3 id="kosten-titel">Was kostet deine Website?</h3>
+<p>Wähle Seitenzahl und Funktion. Du siehst sofort, welches Paket zu deinem Betrieb passt.</p>
+<div class="kosten-auswahl"><label>Wie viele Seiten brauchst du?
+<select id="kosten-seiten"><option value="1">Eine Seite</option><option value="5">2 bis 5 Seiten</option><option value="8">6 bis 8 Seiten</option><option value="mehr">Mehr als 8 Seiten</option></select></label>
+<label>Was soll die Website können?
+<select id="kosten-funktion"><option value="kontakt">Informieren und Kontakt ermöglichen</option><option value="extra">Einfache Buchung oder Automatisierung</option><option value="shop">Produkte online verkaufen</option><option value="individuell">Mehrere Zusatzfunktionen</option></select></label></div>
+<div class="kosten-resultat" aria-live="polite" aria-atomic="true"><strong id="kosten-preis">CHF 900 einmalig</strong><span id="kosten-paket">Web Basic · Eine Seite mit bis zu sechs Inhaltsbereichen und Kontaktformular.</span></div>
+<p class="kosten-hinweis">Richtpreis für die Umsetzung. Domain, Hosting und externe Dienste kommen bei Bedarf dazu. Den verbindlichen Preis erhältst du mit der Offerte.</p>
+<a id="kosten-anfrage" href="#kontakt" class="button draft-request package-select" data-package="Web Basic · CHF 900.–">Kostenlosen Entwurf anfragen</a>
+</section>
+<script>
+(() => {
+  const calculator = document.querySelector('#kostenrechner');
+  const pages = document.querySelector('#kosten-seiten');
+  const feature = document.querySelector('#kosten-funktion');
+  const offers = {
+    basic: ['CHF 900 einmalig', 'Web Basic', 'Eine Seite mit bis zu sechs Inhaltsbereichen und Kontaktformular.'],
+    business: ['CHF 1’990 einmalig', 'Web Business', 'Bis zu fünf Seiten mit Kontakt- oder Anfrageformular.'],
+    premium: ['CHF 2’900 einmalig', 'Web Premium', 'Bis zu acht Seiten und eine einfache Zusatzfunktion nach Absprache.'],
+    custom: ['Preis auf Anfrage', 'Individuelle Offerte', 'Für diesen Umfang kalkuliere ich den Aufwand persönlich.']
+  };
+  function updatePrice() {
+    let plan = 'basic';
+    if (pages.value === 'mehr' || ['shop', 'individuell'].includes(feature.value)) plan = 'custom';
+    else if (pages.value === '8' || feature.value === 'extra') plan = 'premium';
+    else if (pages.value === '5') plan = 'business';
+    const [price, name, scope] = offers[plan];
+    document.querySelector('#kosten-preis').textContent = price;
+    document.querySelector('#kosten-paket').textContent = name + ' · ' + scope;
+    document.querySelector('#kosten-anfrage').dataset.package = [name, price, pages.selectedOptions[0].text, feature.selectedOptions[0].text].join(' · ');
+  }
+  calculator.addEventListener('change', updatePrice);
+  updatePrice();
+})();
+</script>
 <div class="salisepp-packages packages-interactive">
 <article data-reveal class="salisepp-package" data-plan="basic" aria-labelledby="plan-basic-heading">
 <div class="package-card-heading"><span class="eyebrow">KOMPAKT STARTEN</span><span class="package-match" hidden>Passt zu deiner Auswahl</span></div>
